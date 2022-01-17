@@ -1,0 +1,38 @@
+save_data: th-en/run/distill/example
+
+## Where the vocab(s) will be written
+src_vocab: th-en/run/distill/example.vocab.src
+tgt_vocab: th-en/run/distill/example.vocab.tgt
+# Prevent overwriting existing files in the folder
+overwrite: False
+
+# Corpus opts:
+data:
+    corpus_1:
+        path_src: th-en/train.th.sp
+        path_tgt: th-en/teacher.txt
+    valid:
+        path_src: th-en/dev.th.sp
+        path_tgt: th-en/dev.en.sp
+
+skip_empty_level: silent
+
+# Vocabulary files that were just created
+src_vocab: th-en/run/distill/example.vocab.src
+tgt_vocab: th-en/run/distill/example.vocab.tgt
+vocab_size: 25000
+
+# Train on a single GPU
+batch_size: 64
+world_size: 1
+gpu_ranks: [0]
+start_decay_step: 12000
+rnn_size: 100
+word_vec_size: 100
+
+# Where to save the checkpoints
+save_model: th-en/run/distill/model
+save_checkpoint_steps: 5000
+train_steps: 25000
+valid_steps: 500
+report_every: 100
